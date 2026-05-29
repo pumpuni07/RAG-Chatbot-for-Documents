@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PDF Chatbot — Jack Pumpuni Frimpong-Manso</title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+
+<body class="light-mode">
+
+  <!-- ── NAVBAR ─────────────────────────────────────────────────────────── -->
+  <nav class="navbar navbar-expand-lg px-4 py-2">
+    <span class="navbar-brand fw-bold">
+      <i class="fa-solid fa-file-pdf me-2" style="color:#e74c3c;"></i>
+      PDF Chatbot
+    </span>
+    <div class="ms-auto d-flex align-items-center gap-3">
+      <!-- Light / Dark toggle -->
+      <div class="form-check form-switch mb-0">
+        <input class="form-check-input" type="checkbox" id="light-dark-mode-switch" />
+        <label class="form-check-label" for="light-dark-mode-switch">
+          <i class="fa-solid fa-moon"></i>
+        </label>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── MAIN LAYOUT ────────────────────────────────────────────────────── -->
+  <div class="container-fluid main-container">
+    <div class="row h-100">
+
+      <!-- Sidebar -->
+      <div class="col-md-3 sidebar p-3">
+        <h6 class="sidebar-title">
+          <i class="fa-solid fa-circle-info me-2"></i>How to use
+        </h6>
+        <ol class="sidebar-steps">
+          <li>Click <strong>Upload PDF</strong> below and select your document.</li>
+          <li>Wait for the confirmation message.</li>
+          <li>Type your question in the chat box and press <strong>Send</strong>.</li>
+          <li>The bot will answer based on your document content.</li>
+        </ol>
+
+        <hr />
+
+        <!-- Upload button -->
+        <label for="file-upload" class="btn btn-upload w-100 mb-2">
+          <i class="fa-solid fa-upload me-2"></i>Upload PDF
+        </label>
+        <input type="file" id="file-upload" accept=".pdf" class="d-none" />
+
+        <!-- Reset button -->
+        <button id="reset-button" class="btn btn-reset w-100">
+          <i class="fa-solid fa-rotate-left me-2"></i>Reset Chat
+        </button>
+
+        <hr />
+        <p class="sidebar-note">
+          Powered by IBM WatsonX (Llama 4) &amp; LangChain RAG pipeline.<br/>
+          <span class="text-muted" style="font-size:0.75rem;">
+            © 2026 Jack Pumpuni Frimpong-Manso
+          </span>
+        </p>
+      </div>
+
+      <!-- Chat area -->
+      <div class="col-md-9 chat-area d-flex flex-column p-0">
+
+        <!-- Message list -->
+        <div id="message-list" class="flex-grow-1 p-3 overflow-auto">
+          <!-- Initial bot greeting -->
+          <div class="message-line">
+            <div class="message-box bot-message">
+              <i class="fa-solid fa-robot me-2"></i>
+              Hello! Please upload a PDF document and I will answer any questions
+              you have about its content.
+            </div>
+          </div>
+        </div>
+
+        <!-- Loading animation -->
+        <div class="loading-animation" style="display:none; padding: 0 1rem 0.5rem;">
+          <div class="loading-dots">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </div>
+
+        <!-- Input bar -->
+        <div class="input-bar p-3 d-flex gap-2">
+          <input
+            type="text"
+            id="message-input"
+            class="form-control"
+            placeholder="Ask a question about your document..."
+            autocomplete="off"
+          />
+          <button id="send-button" class="btn btn-send">
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom script -->
+  <script src="/static/script.js"></script>
+</body>
+</html>

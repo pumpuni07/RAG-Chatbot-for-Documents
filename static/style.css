@@ -1,0 +1,294 @@
+/* ============================================================
+   style.css — PDF Chatbot Interface
+   IBM Generative AI Engineering Professional Certificate
+   Author: Jack Pumpuni Frimpong-Manso | 2026
+   ============================================================ */
+
+/* ── CSS Variables ─────────────────────────────────────────── */
+:root {
+  --bg-primary:    #f5f7fa;
+  --bg-secondary:  #ffffff;
+  --bg-sidebar:    #1a1a2e;
+  --bg-navbar:     #16213e;
+  --text-primary:  #2d3436;
+  --text-secondary:#636e72;
+  --text-sidebar:  #dfe6e9;
+  --bot-bubble:    #ffffff;
+  --user-bubble:   #0984e3;
+  --user-text:     #ffffff;
+  --border:        #dfe6e9;
+  --input-bg:      #ffffff;
+  --send-btn:      #0984e3;
+  --send-hover:    #0773c5;
+  --upload-btn:    #00b894;
+  --upload-hover:  #00a381;
+  --reset-btn:     #636e72;
+  --reset-hover:   #2d3436;
+  --dot-color:     #0984e3;
+  --shadow:        0 2px 12px rgba(0,0,0,0.08);
+}
+
+body.dark-mode {
+  --bg-primary:    #0f0f1a;
+  --bg-secondary:  #1a1a2e;
+  --bg-sidebar:    #0d0d1a;
+  --bg-navbar:     #0d0d1a;
+  --text-primary:  #dfe6e9;
+  --text-secondary:#b2bec3;
+  --bot-bubble:    #1e1e3a;
+  --user-bubble:   #0984e3;
+  --border:        #2d3561;
+  --input-bg:      #1e1e3a;
+  --shadow:        0 2px 12px rgba(0,0,0,0.4);
+}
+
+/* ── Reset & Base ───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-size: 15px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background 0.3s, color 0.3s;
+}
+
+/* ── Navbar ─────────────────────────────────────────────────── */
+.navbar {
+  background: var(--bg-navbar);
+  color: #fff;
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-brand { color: #fff !important; font-size: 1.1rem; }
+
+.form-check-input:checked { background-color: #0984e3; border-color: #0984e3; }
+.form-check-label { color: #b2bec3; }
+
+/* ── Main Layout ────────────────────────────────────────────── */
+.main-container {
+  height: calc(100vh - 56px);
+  overflow: hidden;
+}
+
+.row { height: 100%; }
+
+/* ── Sidebar ────────────────────────────────────────────────── */
+.sidebar {
+  background: var(--bg-sidebar);
+  color: var(--text-sidebar);
+  height: 100%;
+  overflow-y: auto;
+  border-right: 1px solid var(--border);
+}
+
+.sidebar-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #74b9ff;
+  margin-bottom: 0.75rem;
+}
+
+.sidebar-steps {
+  padding-left: 1.2rem;
+  font-size: 0.88rem;
+  line-height: 1.8;
+  color: #b2bec3;
+}
+
+.sidebar-steps li { margin-bottom: 0.4rem; }
+.sidebar-steps strong { color: #dfe6e9; }
+
+.sidebar-note {
+  font-size: 0.82rem;
+  color: #636e72;
+  line-height: 1.6;
+}
+
+hr { border-color: #2d3561; margin: 1rem 0; }
+
+/* ── Buttons ────────────────────────────────────────────────── */
+.btn-upload {
+  background: var(--upload-btn);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  padding: 0.5rem 1rem;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+.btn-upload:hover { background: var(--upload-hover); color: #fff; }
+
+.btn-reset {
+  background: transparent;
+  color: #b2bec3;
+  border: 1px solid #2d3561;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s;
+}
+.btn-reset:hover { background: #2d3561; color: #dfe6e9; }
+
+/* ── Chat Area ──────────────────────────────────────────────── */
+.chat-area {
+  background: var(--bg-primary);
+  height: 100%;
+}
+
+/* ── Message List ───────────────────────────────────────────── */
+#message-list {
+  flex: 1;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+/* ── Message Bubbles ────────────────────────────────────────── */
+.message-line {
+  display: flex;
+  margin-bottom: 1rem;
+  animation: fadeIn 0.3s ease;
+}
+
+.message-line.my-text { justify-content: flex-end; }
+
+.message-box {
+  max-width: 72%;
+  padding: 0.75rem 1rem;
+  border-radius: 16px;
+  line-height: 1.6;
+  font-size: 0.95rem;
+  box-shadow: var(--shadow);
+}
+
+/* Bot bubble */
+.bot-message,
+.message-box:not(.my-text .message-box) {
+  background: var(--bot-bubble);
+  color: var(--text-primary);
+  border-bottom-left-radius: 4px;
+  border: 1px solid var(--border);
+}
+
+/* User bubble */
+.my-text .message-box {
+  background: var(--user-bubble);
+  color: var(--user-text);
+  border-bottom-right-radius: 4px;
+  border: none;
+}
+
+/* Dark mode bubbles */
+body.dark-mode .bot-message,
+body.dark-mode .message-box:not(.my-text .message-box) {
+  background: var(--bot-bubble);
+  border-color: #2d3561;
+}
+
+/* ── Loading Animation ──────────────────────────────────────── */
+.loading-animation { display: flex; align-items: center; }
+
+.loading-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--bot-bubble);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  border-bottom-left-radius: 4px;
+  padding: 0.75rem 1rem;
+  box-shadow: var(--shadow);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: var(--dot-color);
+  border-radius: 50%;
+  animation: bounce 1.2s infinite ease-in-out;
+}
+
+.dot:nth-child(2) { animation-delay: 0.2s; }
+.dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: scale(0.7); opacity: 0.5; }
+  40%           { transform: scale(1.1); opacity: 1;   }
+}
+
+/* ── Input Bar ──────────────────────────────────────────────── */
+.input-bar {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+}
+
+#message-input {
+  background: var(--input-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.95rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#message-input:focus {
+  border-color: #0984e3;
+  box-shadow: 0 0 0 3px rgba(9,132,227,0.15);
+  outline: none;
+}
+
+#message-input::placeholder { color: var(--text-secondary); }
+
+.btn-send {
+  background: var(--send-btn);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.btn-send:hover  { background: var(--send-hover); color: #fff; }
+.btn-send:active { transform: scale(0.95); }
+.btn-send:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ── Upload button inside chat ──────────────────────────────── */
+.upload-btn-chat {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 0.82rem;
+  color: #0984e3;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* ── Animations ─────────────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────── */
+#message-list::-webkit-scrollbar { width: 5px; }
+#message-list::-webkit-scrollbar-track  { background: transparent; }
+#message-list::-webkit-scrollbar-thumb  { background: var(--border); border-radius: 10px; }
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .message-box { max-width: 90%; }
+}

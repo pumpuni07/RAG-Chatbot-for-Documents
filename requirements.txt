@@ -1,0 +1,30 @@
+# ── Core web framework ────────────────────────────────────────────────────────
+flask==2.3.3
+flask-cors==4.0.0
+
+# ── LangChain ecosystem ───────────────────────────────────────────────────────
+langchain==0.3.27
+langchain-core==0.3.80
+langchain-community==0.3.31
+langchain-huggingface==0.3.1
+langchain-ibm==0.3.0
+langchain-text-splitters==0.3.11
+
+# ── HuggingFace ───────────────────────────────────────────────────────────────
+huggingface-hub==0.36.0
+sentence-transformers==2.7.0
+transformers==4.43.3
+tokenizers==0.19.1
+
+# ── Vector store ──────────────────────────────────────────────────────────────
+chromadb==0.4.22
+
+# ── IBM WatsonX ───────────────────────────────────────────────────────────────
+ibm-watsonx-ai==1.1.2
+
+# ── PDF processing ────────────────────────────────────────────────────────────
+pypdf==4.0.2
+
+# ── Utilities ─────────────────────────────────────────────────────────────────
+requests==2.32.5
+python-dotenv==1.0.0
