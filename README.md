@@ -239,3 +239,20 @@ Original lab framework © IBM Skills Network. Implementation by Jack Pumpuni Fri
 - Meta AI — Llama 4 Maverick model
 - HuggingFace — `sentence-transformers` library
 - LangChain — RAG orchestration framework
+
+
+---
+
+## Architecture
+
+See:
+
+`docs/architecture.md`
+
+
+## Screenshots
+
+See:
+
+`assets/screenshots`
+
